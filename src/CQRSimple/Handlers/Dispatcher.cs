@@ -31,9 +31,9 @@ namespace CQRSimple.Handlers
         {
             var handlers = _serviceProvider.GetServices<INotificationHandler<TNotification>>();
 
-            if (handlers != null)
+            if (handlers.Any())
             {
-                handlers.ToList()?.ForEach(async concreteHandler => await concreteHandler.Handle(message)); 
+                handlers.ToList().ForEach(async concreteHandler => await concreteHandler.Handle(message)); 
                 return Task.CompletedTask;
             }
 
